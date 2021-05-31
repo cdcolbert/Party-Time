@@ -1,0 +1,9 @@
+[
+    {
+        "trip_name": "Taco Tuesday",
+        "date_range": ["02/02/2020"],
+        "location": "Galveston",
+        "activity": "Beach Day",
+        "transport": "Drive"
+    }
+]
