@@ -29,7 +29,7 @@ function App() {
           <Route path="/startNewTrip">
             <StartNewTrip />
           </Route>
-          <Route path="/myTrips/:id">
+          <Route path="/specificTrip">
             <SpecificTrip />
           </Route>
           <Route path="/createTrip">

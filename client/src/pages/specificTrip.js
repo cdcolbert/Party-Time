@@ -1,4 +1,6 @@
 import React from "react";
+import DayVote from "../components/dayPicker";
+
 
 function SpecificTrip() {
     return (
@@ -7,6 +9,7 @@ function SpecificTrip() {
             <div>All the voting stuff</div>
             <div>Should be in different</div>
             <div>divs.</div>
+            <DayVote />
         </div>
     )
 }
