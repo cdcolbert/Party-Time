@@ -7,7 +7,7 @@ import Nav from './components/NavBar';
 import MyTrips from './pages/myTrips';
 import SpecificTrip from './pages/specificTrip';
 import CreateTrip from "./components/CreateTrip"
-import startNewTrip from './pages/startNewTrip';
+import StartNewTrip from './pages/startNewTrip';
 
 
 function App() {
@@ -27,9 +27,9 @@ function App() {
             <MyTrips />
           </Route>
           <Route path="/startNewTrip">
-            <startNewTrip />
+            <StartNewTrip />
           </Route>
-          <Route path="/specificTrip">
+          <Route path="/myTrips/:id">
             <SpecificTrip />
           </Route>
           <Route path="/createTrip">

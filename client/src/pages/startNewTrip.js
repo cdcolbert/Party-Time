@@ -1,6 +1,5 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 
 function startNewTrip() {
     return (
@@ -32,12 +31,12 @@ function startNewTrip() {
                         name="date_range"
                         placeholder="Date Range (MM/DD/YYYY - MM/DD/YYYY)"
                     />
-                    <button
+                    <FormBtn
                     //disabled={!(formObject.tripname && formObject.potdates)}
                     //onClick={handleFormSubmit}
                     >
                         Create Trip
-              </button>
+                    </FormBtn>
                 </form>
             </div>
         </div>
