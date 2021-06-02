@@ -3,6 +3,19 @@ import ReactVote from 'react-vote';
 
 const VotingMech = (props) => {
 
+    const dateData = {
+        title: "Vote for your preffered dates", // Title of vote
+        items: [ // Array of vote options
+            {
+                title: props.dates, // Title of option
+            },
+        ],
+        closed: false, // Whether this vote is closed or not. If this prop is true, you can only see the result, otherwise you can toggle between voting view and result view.
+        multiple: true, // Whether voters can choose multiple options
+        expansion: true, // Whether voters can add new option
+        showTotal: true // Whether to show total votes in result view
+    }
+
     const LocationData = {
         title: "Vote for your preffered location", // Title of vote
         items: [ // Array of vote options
@@ -44,6 +57,7 @@ const VotingMech = (props) => {
 
     return (
         <div>
+            <ReactVote data={dateData} />
             <ReactVote data={LocationData} />
             <ReactVote data={activityData} />
             <ReactVote data={transportData} />

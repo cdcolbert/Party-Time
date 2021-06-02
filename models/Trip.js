@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Trip extends Model { }
@@ -15,7 +15,7 @@ Trip.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        date_range: {
+        possible_dates: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -27,9 +27,6 @@ Trip.init(
         },
         transport: {
             type: DataTypes.STRING,
-        },
-        dates_selected: {
-            type: DataTypes.DATE,
         }
     },
     {
