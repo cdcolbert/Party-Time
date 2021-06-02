@@ -12,8 +12,8 @@ const VotingMech = (props) => {
         ],
         closed: false, // Whether this vote is closed or not. If this prop is true, you can only see the result, otherwise you can toggle between voting view and result view.
         multiple: true, // Whether voters can choose multiple options
-        expansion: true, // Whether voters can add new option
-        showTotal: true // Whether to show total votes in result view
+        expansion: false, // Whether voters can add new option
+        showTotal: true, // Whether to show total votes in result view,
     }
 
     const LocationData = {
@@ -55,12 +55,20 @@ const VotingMech = (props) => {
         showTotal: true // Whether to show total votes in result view
     }
 
+    function onUpvote(data, diff) {
+        console.log(diff);
+    }
+
+    function onClose(data){
+        console.log(data)
+    }
+
     return (
         <div>
-            <ReactVote data={dateData} />
-            <ReactVote data={LocationData} />
-            <ReactVote data={activityData} />
-            <ReactVote data={transportData} />
+            <ReactVote data={dateData} onUpvote={onUpvote} onClose={onClose} isAdmin={true}/>
+            <ReactVote data={LocationData} onUpvote={onUpvote} onClose={onClose}/>
+            <ReactVote data={activityData} onUpvote={onUpvote} onClose={onClose}/>
+            <ReactVote data={transportData} onUpvote={onUpvote} onClose={onClose}/>
         </div>
     )
 }
