@@ -16,7 +16,7 @@ Trip.init(
             allowNull: false
         },
         date_range: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: false
         },
         location: {
