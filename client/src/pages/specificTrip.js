@@ -21,7 +21,7 @@ function SpecificTrip(props) {
     return (
         <div>
             <h1>{trip.trip_name}</h1>
-            <VotingMech />
+            <VotingMech location_options={trip.location} activity_options={trip.activity} transport_options={trip.transport}/>
             <DayVote />
         </div>
     )
