@@ -1,5 +1,4 @@
 import React from "react";
-import MyTrips from "../components/MyTrips";
 
 function LandingPage() {
     return (
