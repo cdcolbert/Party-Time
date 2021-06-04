@@ -3,7 +3,7 @@ const tripsController = require("../../controllers/tripsController");
 
 router.route("/")
   .get(tripsController.findAll)
-//   .post(tripsController.create);
+  .post(tripsController.create);
 
 router
   .route("/:id")

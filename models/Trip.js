@@ -17,7 +17,7 @@ Trip.init(
         },
         possible_dates: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         location: {
             type: DataTypes.STRING,
