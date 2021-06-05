@@ -20,6 +20,11 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    authOId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true
     }
   },
   {
