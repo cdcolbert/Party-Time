@@ -23,7 +23,7 @@ function App() {
           <Route path="/landingPage">
             <LandingPage />
           </Route>
-          <Route exact path="/myTrips">
+          <Route exact path="/:id">
             <MyTrips />
           </Route>
           <Route path="/startNewTrip">
