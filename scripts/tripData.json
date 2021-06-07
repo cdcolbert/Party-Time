@@ -5,5 +5,12 @@
         "location": "Galveston",
         "activity": "Beach Day",
         "transport": "Drive"
+    },
+    {
+        "trip_name": "Taco Thursday",
+        "possible_dates": "02/02/2020",
+        "location": "Galveston",
+        "activity": "Beach Day",
+        "transport": "Drive"
     }
 ]
