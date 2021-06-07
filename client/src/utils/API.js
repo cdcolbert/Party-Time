@@ -7,5 +7,8 @@ export default {
   },
   getUser: function(id) {
     return axios.get("api/users/" + id)
+  },
+  saveTrip: function(tripData) {
+    return axios.post("/api/trips", tripData);
   }
 };

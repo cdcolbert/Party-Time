@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import API from "../utils/API";
 import VotingMech from "../components/VotingMech";
 
-
 function SpecificTrip(props) {
     const [trip, setTrip] = useState({});
     
