@@ -6,7 +6,6 @@ import LandingPage from "./pages/landingPage";
 import Nav from './components/NavBar';
 import MyTrips from './pages/myTrips';
 import SpecificTrip from './pages/specificTrip';
-import CreateTrip from "./components/CreateTrip"
 import StartNewTrip from './pages/startNewTrip';
 
 
@@ -26,14 +25,11 @@ function App() {
           <Route exact path="/:id">
             <MyTrips />
           </Route>
-          <Route path="/startNewTrip">
+          <Route exact path="/startNewTrip">
             <StartNewTrip />
           </Route>
           <Route exact path="/myTrips/:id">
             <SpecificTrip />
-          </Route>
-          <Route path="/createTrip">
-            <CreateTrip />
           </Route>
         </Switch>
       </BrowserRouter>
