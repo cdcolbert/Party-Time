@@ -13,7 +13,7 @@ function SpecificTrip(props) {
         .then(res => setTrip(res.data))
         .then(`this is trip ${trip}`)
         .catch(err => console.log(err));
-    })
+    }, [])
 
     return (
         <div>

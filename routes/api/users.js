@@ -2,7 +2,7 @@ const router = require("express").Router();
 const tripsController = require("../../controllers/tripsController");
 
 router.route("/")
-  // .get(tripsController.findAll)
+  .get(tripsController.findAll)
 //   .post(tripsController.create);
 
 router
