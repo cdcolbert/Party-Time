@@ -17,13 +17,25 @@ module.exports = {
   },
   findUser: function(req, res) {
     db.User
-      .findOne({ where: {authOId: req.params.id}})
+      .findOne({ where: req.body})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
     db.Trip
     .create(req.body)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
+  findOrCreate: function(req, res) {
+    db.User
+    .findOrCreate({
+      where: {authOId: req.body.authOId},
+      defaults:{
+        name: req.body.name,
+        email: req.body.email
+      }
+    })
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   }

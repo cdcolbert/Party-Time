@@ -10,5 +10,8 @@ export default {
   },
   saveTrip: function(tripData) {
     return axios.post("/api/trips", tripData);
-  }
+  },
+  findOrCreate: function(userData) {
+    return axios.post("/api/users/", userData)
+  },
 };

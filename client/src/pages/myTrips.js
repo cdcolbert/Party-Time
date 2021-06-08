@@ -1,27 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import API from "../utils/API";
-import { useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { UserContext } from "../utils/UserContext";
 
 
 function MyTrips() {
 
-    const [userData, setUserData] = useState({});
+    const {currentUser, setCurrentUser} = useContext(UserContext);
     const { user, isAuthenticated } = useAuth0();
 
-    const { id } = useParams();
+    // useEffect(() => {
+    //     // if (user) {
+    //     //     getTrips()
+    //     }
+    // }, (user))
 
-    useEffect(() => {
-        API.getUser(id)
-            .then(res => setUserData(res.data))
-            .catch(err => console.log(err));
-    }, [])
+    // function getTrips() {
+    //     API.getTrip(id)
+    //     .then(res => setTrip(res.data))
+    //     .then(`this is trip ${trip}`)
+    //     .catch(err => console.log(err));
+    // }
+    
 
-    console.log(`this is the id ${id}`);
+    console.log(`this is the current User ${currentUser}`);
     return (
         isAuthenticated && (
             <div>
-                {user.name}
+                <h1>{currentUser.name}</h1>
             This is my trips page
                 <div>
                     <a href={`/myTrips/1`}>Taco Tuesday</a>
