@@ -1,7 +1,8 @@
 [
     {
-        "name": "Jackie",
-        "email": "jackie@aol.com"
+        "name": "Jackie Hodges",
+        "email": "jackie@aol.com",
+        "authOId": "google-oauth2%7C106087066781659087854"
     },
     {
         "name": "Christian",

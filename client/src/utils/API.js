@@ -5,6 +5,11 @@ export default {
   getTrip: function(id) {
     return axios.get("/api/trips/" + id);
   },
+
+  getUser: function(id) {
+    return axios.get("/api/users/" + id)
+  },
+
   saveTrip: function(tripData) {
     return axios.post("/api/trips", tripData);
   }
