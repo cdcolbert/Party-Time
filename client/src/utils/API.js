@@ -6,7 +6,7 @@ export default {
     return axios.get("/api/trips/" + id);
   },
   getUser: function(id) {
-    return axios.get("api/users/" + id)
+    return axios.get("/api/users/" + id)
   },
   saveTrip: function(tripData) {
     return axios.post("/api/trips", tripData);
