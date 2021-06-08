@@ -9,7 +9,7 @@ function LandingPage() {
             <div>
                 This is the landing page
                 <div>
-                    <a href={`/${user.sub}`}>My Trips</a>
+                    <a href={`/allTrips/${user.sub}`}>My Trips</a>
                 </div>
                 <div>
                     <a href="/startNewTrip">Start New Trip</a>

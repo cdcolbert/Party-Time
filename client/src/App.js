@@ -22,13 +22,13 @@ function App() {
           <Route path="/landingPage">
             <LandingPage />
           </Route>
-          <Route exact path="/:id">
+          <Route path="/allTrips/:id">
             <MyTrips />
           </Route>
           <Route path="/startNewTrip">
             <StartNewTrip />
           </Route>
-          <Route exact path="/myTrips/:id">
+          <Route path="/myTrips/:id">
             <SpecificTrip />
           </Route>
         </Switch>
