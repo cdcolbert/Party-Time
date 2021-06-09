@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import LandingPage from "./pages/landingPage";
 import Nav from './components/NavBar';
 import MyTrips from './pages/myTrips';

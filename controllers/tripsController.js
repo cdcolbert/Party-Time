@@ -2,10 +2,9 @@ const db = require("../models");
 
 // Defining methods for the tripsController
 module.exports = {
-  findAll: function (req, res) {
+  findTrip: function (req, res) {
     db.Trip
-      .find(req.query)
-      .sort({ date: -1 })
+      .findOne(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -25,7 +24,7 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  create: function (req, res) {
+  createTrip: function (req, res) {
     db.Trip
       .create(req.body)
       .then(dbModel => res.json(dbModel))

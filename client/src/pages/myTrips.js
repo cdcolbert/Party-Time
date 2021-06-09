@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 
 function MyTrips() {
 
-    const {currentUser, setCurrentUser} = useContext(UserContext);
-    const { user, isAuthenticated } = useAuth0();
+    const { currentUser } = useContext(UserContext);
+    const { isAuthenticated } = useAuth0();
     const [trips, setTrips] = useState([]);
 
     useEffect(() => {

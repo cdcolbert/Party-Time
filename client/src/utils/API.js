@@ -14,4 +14,7 @@ export default {
   findOrCreate: function(userData) {
     return axios.post("/api/users/", userData)
   },
+  getSpecificTrip: function(tripId) {
+    return axios.get("/api/trips/", tripId)
+  },
 };
