@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { UserContext } from "../utils/UserContext";
 import API from "../utils/API";
+import { Link } from "react-router-dom";
 
 function LandingPage() {
     const { user, isAuthenticated } = useAuth0();
@@ -29,12 +30,12 @@ function LandingPage() {
     return (
         isAuthenticated && (
             <div>
-                <div className="user-name">{user.name}</div>
+                <div className="user-name">Welcome back, {currentUser.name}</div>
                 <div>
-                    <a href={`/allTrips/`}>My Trips</a>
+                    <Link to="/allTrips/">My Trips</Link>
                 </div>
                 <div>
-                    <a href="/startNewTrip">Start New Trip</a>
+                    <Link to="/startNewTrip">Start New Trip</Link>
                 </div>
 
             </div>

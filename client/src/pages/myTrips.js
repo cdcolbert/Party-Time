@@ -23,11 +23,10 @@ function MyTrips() {
     // }
     
 
-    console.log(`this is the current User ${currentUser}`);
+    console.log(`this is the current User ${currentUser.name}`);
     return (
         isAuthenticated && (
             <div>
-                <h1>{currentUser.name}</h1>
             This is my trips page
                 <div>
                     <a href={`/myTrips/1`}>Taco Tuesday</a>

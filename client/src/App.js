@@ -10,12 +10,7 @@ import { UserContext } from './utils/UserContext';
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({
-    id: "",
-    name: "",
-    email: "",
-    auth0Id: ""
-});
+  const [currentUser, setCurrentUser] = useState({});
 
   return (
     <div className="wrapper">
@@ -23,18 +18,10 @@ function App() {
         <UserContext.Provider value={{currentUser, setCurrentUser}}>
           <Nav />
           <Switch>
-            <Route exact path="/">
-              <LandingPage />
-            </Route>
-            <Route path="/allTrips/">
-              <MyTrips />
-            </Route>
-            <Route path="/startNewTrip">
-              <StartNewTrip />
-            </Route>
-            <Route path="/myTrips/:id">
-              <SpecificTrip />
-            </Route>
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/allTrips/" component={MyTrips} />
+            <Route path="/startNewTrip" component={StartNewTrip} />
+            <Route path="/myTrips/:id" component={SpecificTrip} />
           </Switch>
         </UserContext.Provider>
       </BrowserRouter>
