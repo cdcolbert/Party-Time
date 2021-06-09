@@ -7,10 +7,10 @@
         "transport": "Drive"
     },
     {
-        "trip_name": "Taco Thursday",
+        "trip_name": "Hawaii",
         "possible_dates": "02/02/2020",
-        "location": "Galveston",
+        "location": "Hawaii",
         "activity": "Beach Day",
-        "transport": "Drive"
+        "transport": "Fly"
     }
 ]
