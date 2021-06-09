@@ -16,4 +16,9 @@ Trip.belongsToMany(User, {
   }
 });
 
+User.hasMany(Travellers);
+Travellers.belongsTo(User);
+Trip.hasMany(Travellers);
+Travellers.belongsTo(Trip);
+
 module.exports = { User, Travellers, Trip };
