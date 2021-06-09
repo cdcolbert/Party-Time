@@ -9,10 +9,10 @@ function SpecificTrip(props) {
     const {id} = useParams();
 
     useEffect(() => {
-      API.getTrip(id)
-        .then(res => setTrip(res.data))
-        .then(`this is trip ${trip}`)
-        .catch(err => console.log(err));
+    //   API.getSpecificTrip(id)
+    //     .then(res => setTrip(res.data))
+    //     .then(`this is trip ${trip}`)
+    //     .catch(err => console.log(err));
     }, [])
 
     return (

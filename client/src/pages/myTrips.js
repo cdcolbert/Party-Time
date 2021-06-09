@@ -2,36 +2,42 @@ import React, { useContext, useEffect, useState } from "react";
 import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../utils/UserContext";
+import { Link } from "react-router-dom";
 
 
 function MyTrips() {
 
     const {currentUser, setCurrentUser} = useContext(UserContext);
     const { user, isAuthenticated } = useAuth0();
+    const [trips, setTrips] = useState([]);
 
-    // useEffect(() => {
-    //     // if (user) {
-    //     //     getTrips()
-    //     }
-    // }, (user))
+    useEffect(() => {
+        getTrips();
+    }, [])
 
-    // function getTrips() {
-    //     API.getTrip(id)
-    //     .then(res => setTrip(res.data))
-    //     .then(`this is trip ${trip}`)
-    //     .catch(err => console.log(err));
-    // }
+    function getTrips() {
+        API.getTrips(currentUser.id)
+        .then(res => setTrips(res.data.trips))
+        .then(`this is trip ${trips[0]}`)
+        .catch(err => console.log(err));
+    }
     
 
-    console.log(`this is the current User ${currentUser.name}`);
+    console.log(`this is the current User id ${currentUser.id}`);
+    console.log(`these are my trips ${trips}`)
     return (
         isAuthenticated && (
             <div>
-            This is my trips page
-                <div>
-                    <a href={`/myTrips/1`}>Taco Tuesday</a>
-                </div>
-            </div>
+            {trips.map(trip => 
+              <button key={trip.id}>
+                <Link to={"/myTrips/" + trip.id}>
+                  <strong>
+                    {trip.trip_name}
+                  </strong>
+                </Link>
+              </button>
+            )}
+          </div>
         )
     )
 }
