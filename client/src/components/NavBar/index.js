@@ -5,7 +5,7 @@ import LogoutButton from "../logoutButton";
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="/landingPage">
+      <a className="navbar-brand" href="/">
         WTPA
       </a>
       <button
