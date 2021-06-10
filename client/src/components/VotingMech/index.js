@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactVote from 'react-vote';
+import API from '../../utils/API';
 
 const VotingMech = (props) => {
+
+    const [dateVotes, setDateVotes] = useState({});
+    const [locationVotes, setLocationVotes] = useState({});
+    const [activityVotes, setActivityVotes] = useState({});
+    const [transportVotes, setTransportVotes] = useState({});
+
 
     const dateData = {
         title: "Vote for your preffered dates", // Title of vote
@@ -54,9 +61,62 @@ const VotingMech = (props) => {
         expansion: true, // Whether voters can add new option
         showTotal: true // Whether to show total votes in result view
     }
+    useEffect(() => {
+        // API.setVote(
+        //     {
+        //         voteData: dateData,
+        //         locationData: LocationData,
+        //         activityData: activityData,
+        //         transportData: transportData,
+        //         trip: props.tripId
+        //     }
+        // )
+        //     .then(res => console.log(res.data))
+        
+    }, [])
 
-    function onUpvote(data, diff) {
+    function onUpvoteDate(data, diff) {
         console.log(data)
+        API.setVote(
+            {
+                voteData: data,
+                trip: props.tripId
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onUpvoteLocation(data, diff) {
+        console.log(data)
+        API.setVote(
+            {
+                locationData: data,
+                trip: props.tripId
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onUpvoteActivity(data, diff) {
+        console.log(data)
+        API.setVote(
+            {
+                activityData: data,
+                trip: props.tripId
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onUpvoteTransport(data, diff) {
+        console.log(data)
+        API.setVote(
+            {
+                transportData: data,
+                trip: props.tripId
+            }
+        )
+            .then(res => console.log(res.data))
     }
 
     function onClose(data){
@@ -65,10 +125,10 @@ const VotingMech = (props) => {
 
     return (
         <div>
-            <ReactVote data={dateData} onUpvote={onUpvote} onClose={onClose} isAdmin={true}/>
-            <ReactVote data={LocationData} onUpvote={onUpvote} onClose={onClose}/>
-            <ReactVote data={activityData} onUpvote={onUpvote} onClose={onClose}/>
-            <ReactVote data={transportData} onUpvote={onUpvote} onClose={onClose}/>
+            <ReactVote data={dateData} onUpvote={onUpvoteDate} onClose={onClose} isAdmin={true}/>
+            <ReactVote data={LocationData} onUpvote={onUpvoteLocation} onClose={onClose}/>
+            <ReactVote data={activityData} onUpvote={onUpvoteActivity} onClose={onClose}/>
+            <ReactVote data={transportData} onUpvote={onUpvoteTransport} onClose={onClose}/>
         </div>
     )
 }
