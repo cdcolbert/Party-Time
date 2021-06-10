@@ -3,6 +3,7 @@ const tripsController = require("../../controllers/tripsController");
 
 router.route("/")
 // .get(tripsController.findTrip)
+.post(tripsController.newAssociation)
 
 router
   .route("/:id")
