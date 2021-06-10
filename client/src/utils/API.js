@@ -17,4 +17,7 @@ export default {
   getSpecificTrip: function(tripId) {
     return axios.get("/api/specificTrips/" + tripId)
   },
+  addAssociation: function(travellerData) {
+    return axios.post("/api/specificTrips/", travellerData)
+  }
 };

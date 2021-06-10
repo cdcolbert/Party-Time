@@ -5,8 +5,8 @@ module.exports = {
   findTrip: function (req, res) {
     db.Trip
       .findOne({
-        where: {id: req.params.id},
-        include: [{model: db.User}]
+        where: { id: req.params.id },
+        include: [{ model: db.User }]
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -16,7 +16,8 @@ module.exports = {
       .findOne({
         where: { id: req.params.id }
         ,
-        include: [{ model: db.Trip
+        include: [{
+          model: db.Trip
           // , through: db.Travellers 
         }]
       })
@@ -31,7 +32,15 @@ module.exports = {
   },
   createTrip: function (req, res) {
     db.Trip
-      .create(req.body)
+      .create({
+        trip_name: req.body.trip_name,
+        location: req.body.location,
+        activity: req.body.activity,
+        transport: req.body.transport
+      },
+        {
+          include: db.User
+        })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -46,5 +55,11 @@ module.exports = {
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  newAssociation: function (req, res) {
+    db.Travellers
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };

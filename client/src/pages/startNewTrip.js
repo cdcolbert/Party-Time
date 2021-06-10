@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import DayVote from "../components/DayVote";
 import { Input, FormBtn } from "../components/Form";
 import API from "../utils/API";
+import { UserContext } from "../utils/UserContext";
 
 
 function StartNewTrip(props) {
+    const { currentUser } = useContext(UserContext);
     const [formObject, setFormObject] = useState({});
     // useEffect(() => {
     //     API.saveTrip(id)
@@ -32,8 +34,18 @@ function StartNewTrip(props) {
             transport: formObject.transport,
             //date_range: formObject.date_range
           })
+          .then(res => addAssociation(res.data.id))
         }
       };
+
+      function addAssociation (newTripId){
+        API.addAssociation({
+            trip_id: newTripId,
+            user_id: currentUser.id,
+            admin: true
+        })
+        .then(res => console.log(res.data))
+      }
 
     return (
         <div>
