@@ -11,7 +11,7 @@ function SpecificTrip(props) {
     useEffect(() => {
         console.log(`this is the tripiD ${id}`)
         API.getSpecificTrip(id)
-        .then(res => console.log(res.data))
+        .then(res => setTrip(res.data))
         .then(`this is trip ${trip}`)
         .catch(err => console.log(err));
     }, [])
