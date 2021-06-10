@@ -19,5 +19,8 @@ export default {
   },
   addAssociation: function(travellerData) {
     return axios.post("/api/specificTrips/", travellerData)
+  },
+  setVote: function(voteData) {
+    return axios.put("/api/votes/", voteData)
   }
 };

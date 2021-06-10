@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactVote from 'react-vote';
 
 const VotingMech = (props) => {
@@ -56,7 +56,7 @@ const VotingMech = (props) => {
     }
 
     function onUpvote(data, diff) {
-        console.log(diff);
+        console.log(data)
     }
 
     function onClose(data){

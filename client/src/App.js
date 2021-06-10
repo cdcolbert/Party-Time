@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="wrapper">
       <BrowserRouter>
-        <UserContext.Provider value={{currentUser, setCurrentUser}}>
+        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
           <Nav />
           <Switch>
             <Route exact path="/" component={LandingPage} />
