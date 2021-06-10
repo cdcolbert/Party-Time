@@ -2,10 +2,10 @@ const router = require("express").Router();
 const tripsController = require("../../controllers/tripsController");
 
 router.route("/")
-  .post(tripsController.createTrip);
+// .get(tripsController.findTrip)
 
 router
   .route("/:id")
-  .get(tripsController.findById)
+  .get(tripsController.findTrip)
 
 module.exports = router;
