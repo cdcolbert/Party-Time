@@ -9,13 +9,19 @@ const VotingMech = (props) => {
     const { currentTrip } = useContext(TripContext);
     const { currentUser } = useContext(UserContext);
     const [isAdmin, setAdmin] = useState([]);
+    const [currentVote, setCurrentVote] = useState([]);
 
     useEffect(() => {
         // check if the user is an admin
-
+        fetchCurrentVoteData();
         checkUserAdmin();
         // do i need something in here to fetch the vote data if the person isn't an admin?
     }, [currentTrip, currentUser])
+
+    function fetchCurrentVoteData(){
+        API.getSpecificTrip(currentTrip.id)
+            .then(res => console.log(res.data))
+    }
 
     function checkUserAdmin(){
         console.log(currentTrip.id);
