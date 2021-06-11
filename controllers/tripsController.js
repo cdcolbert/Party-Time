@@ -47,10 +47,10 @@ module.exports = {
   findOrCreate: function (req, res) {
     db.User
       .findOrCreate({
-        where: { authOId: req.body.authOId },
+        where: { email: req.body.email },
         defaults: {
           name: req.body.name,
-          email: req.body.email
+          authOId: req.body.authOId
         }
       })
       .then(dbModel => res.json(dbModel))
