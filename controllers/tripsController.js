@@ -76,4 +76,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  isUserAdmin: function (req, res) {
+    db.Travellers
+      .findOne({
+        where: req.body
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
 };

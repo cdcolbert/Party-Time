@@ -8,6 +8,25 @@ const VotingMech = (props) => {
 
     const { currentTrip } = useContext(TripContext);
     const { currentUser } = useContext(UserContext);
+    const [isAdmin, setAdmin] = useState([]);
+
+    useEffect(() => {
+        // check if the user is an admin
+
+        checkUserAdmin();
+        // do i need something in here to fetch the vote data if the person isn't an admin?
+    }, [currentTrip, currentUser])
+
+    function checkUserAdmin(){
+        console.log(currentTrip.id);
+        console.log(currentUser.id)
+        API.isUserAdmin({
+            user_id: currentUser.id,
+            trip_id: currentTrip.id
+        })
+        .then(res => setAdmin(res.data))
+        .catch(err => console.log(err))
+    }
 
     function onCreateDate(data){
         API.setVote(
@@ -19,8 +38,7 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    function onUpvoteDate(data, diff) {
-        setDateVotes(data);
+    function onUpvoteDate(data, diff) {;
         console.log(data)
         API.setVote(
             {
@@ -29,7 +47,6 @@ const VotingMech = (props) => {
             }
         )
             .then(res => console.log(res.data))
-            console.log(`this is dateVotes ${dateVotes.dateVote}`)
     }
 
     function onResetDate(data) {
@@ -177,18 +194,22 @@ const VotingMech = (props) => {
 
     return (
         <div>
-            <h3>Dates:</h3>
-            <h4>You can vote on as many dates as you would like. This were preset by the creator.</h4>
-            <ReactVote onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={true} clientId={currentUser.id} />
-            <h3>Locations:</h3>
-            <h4>You can only vote for one location.</h4>
-            <ReactVote onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} clientId={currentUser.id} />
-            <h3>Activities:</h3>
-            <h4>You can vote on as many activities as you would like, and even add your own!</h4>
-            <ReactVote onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} clientId={currentUser.id} />
-            <h3>Mode of Transport:</h3>
-            <h4>You can only vote for one mode of transport.</h4>
-            <ReactVote onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} clientId={currentUser.id} />
+            <div>
+                <h3>Dates:</h3>
+                <ReactVote onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+            </div>
+            <div>
+                <h3>Locations:</h3>
+                <ReactVote onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+            </div>
+            <div>
+                <h3>Activities:</h3>
+                <ReactVote onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+            </div>
+            <div>
+                <h3>Mode of Transport:</h3>
+                <ReactVote onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+            </div>
         </div>
     )
 }
