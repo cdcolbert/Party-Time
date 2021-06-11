@@ -20,7 +20,7 @@ const VotingMech = (props) => {
 
     function fetchCurrentVoteData(){
         API.getSpecificTrip(currentTrip.id)
-            .then(res => console.log(res.data))
+            .then(res => setCurrentVote(res.data))
     }
 
     function checkUserAdmin(){
@@ -198,26 +198,49 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    return (
-        <div>
+    if(currentVote){
+        return (
             <div>
-                <h3>Dates:</h3>
-                <ReactVote onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                <div>
+                    <h3>Dates:</h3>
+                    <ReactVote data={currentVote.dateVote} onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Locations:</h3>
+                    <ReactVote data={currentVote.locationVote} onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Activities:</h3>
+                    <ReactVote data={currentVote.activityVote} onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Mode of Transport:</h3>
+                    <ReactVote data={currentVote.transportVote} onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
             </div>
+        )
+    } else {
+        return (
             <div>
-                <h3>Locations:</h3>
-                <ReactVote onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                <div>
+                    <h3>Dates:</h3>
+                    <ReactVote onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Locations:</h3>
+                    <ReactVote onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Activities:</h3>
+                    <ReactVote onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Mode of Transport:</h3>
+                    <ReactVote onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
             </div>
-            <div>
-                <h3>Activities:</h3>
-                <ReactVote onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} isAdmin={isAdmin.admin} clientId={currentUser.id} />
-            </div>
-            <div>
-                <h3>Mode of Transport:</h3>
-                <ReactVote onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} isAdmin={isAdmin.admin} clientId={currentUser.id} />
-            </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default VotingMech
