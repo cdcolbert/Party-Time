@@ -5,11 +5,16 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@auth0/auth0-react": "^1.5.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
-    "bootstrap": "^5.0.1",
+    "foundation-sites": "^6.6.3",
+    "install": "^0.13.0",
+    "npm": "^7.17.0",
     "react": "^16.13.1",
     "react-day-picker": "^7.4.10",
     "react-dom": "^16.13.1",
@@ -40,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "motion-ui": "^2.0.3"
   }
 }

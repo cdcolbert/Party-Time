@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'foundation-sites/dist/css/foundation.css';
+import 'jquery/dist/jquery.js';
+import 'foundation-sites';
+import 'motion-ui'
 import { Auth0Provider } from '@auth0/auth0-react';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
