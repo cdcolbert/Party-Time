@@ -5,7 +5,7 @@ import App from './App';
 import 'foundation-sites/dist/css/foundation.css';
 import 'jquery/dist/jquery.js';
 import 'foundation-sites';
-import 'motion-ui'
+// import 'motion-ui'
 import { Auth0Provider } from '@auth0/auth0-react';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
