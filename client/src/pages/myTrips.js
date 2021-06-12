@@ -14,7 +14,6 @@ function MyTrips() {
     useEffect(() => {
         getTrips();
     }, [])
-
     function getTrips() {
         API.getTrips(currentUser.id)
         .then(res => setTrips(res.data.trips))
