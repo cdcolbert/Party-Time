@@ -3,9 +3,11 @@ const tripsController = require("../../controllers/tripsController");
 
 router.route("/")
 // .get(tripsController.findTrip)
-.post(tripsController.newAssociation)
+.put(tripsController.updateVote)
+.get(tripsController.isUserAdmin);
 
-router.route("/:id")
-.get(tripsController.findTrip)
+router
+  .route("/:id")
+  // .get(tripsController.findTrip)
 
 module.exports = router;

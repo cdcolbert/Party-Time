@@ -6,23 +6,27 @@ import MyTrips from './pages/myTrips';
 import SpecificTrip from './pages/specificTrip';
 import StartNewTrip from './pages/startNewTrip';
 import { UserContext } from './utils/UserContext';
+import { TripContext } from './utils/TripContext';
 import FoundationBar from "./components/FoundationBar";
 
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
+  const [currentTrip, setCurrentTrip] = useState({});
 
   return (
     <div className="wrapper">
       <BrowserRouter>
-        <UserContext.Provider value={{currentUser, setCurrentUser}}>
-          <FoundationBar />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/allTrips/" component={MyTrips} />
-            <Route path="/startNewTrip" component={StartNewTrip} />
-            <Route path="/myTrips/:id" component={SpecificTrip} />
-          </Switch>
+        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+          <TripContext.Provider value={{ currentTrip, setCurrentTrip }}>
+            <FoundationBar />
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route path="/allTrips/" component={MyTrips} />
+              <Route path="/startNewTrip" component={StartNewTrip} />
+              <Route path="/myTrips/:id" component={SpecificTrip} />
+            </Switch>
+          </TripContext.Provider>
         </UserContext.Provider>
       </BrowserRouter>
     </div>

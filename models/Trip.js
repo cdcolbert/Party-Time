@@ -27,7 +27,25 @@ Trip.init(
         },
         transport: {
             type: DataTypes.STRING,
+        },
+        dateVote:{
+            type: DataTypes.JSON,
+            allowNull: true
+        },
+        locationVote:{
+            type: DataTypes.JSON,
+            allowNull: true
+        },
+        activityVote:{
+            type: DataTypes.JSON,
+            allowNull: true
+        },
+        transportVote:{
+            type: DataTypes.JSON,
+            allowNull: true
         }
+
+
     },
     {
         sequelize,

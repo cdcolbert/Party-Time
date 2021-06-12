@@ -19,5 +19,11 @@ export default {
   },
   addAssociation: function(travellerData) {
     return axios.post("/api/specificTrips/", travellerData)
+  },
+  setVote: function(voteData) {
+    return axios.put("/api/votes/", voteData)
+  },
+  isUserAdmin: function (specificTripData){
+    return axios.get("/api/votes/", specificTripData)
   }
 };

@@ -1,76 +1,246 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ReactVote from 'react-vote';
+import API from '../../utils/API';
+import { TripContext } from '../../utils/TripContext';
+import { UserContext } from '../../utils/UserContext';
 
 const VotingMech = (props) => {
 
-    const dateData = {
-        title: "Vote for your preffered dates", // Title of vote
-        items: [ // Array of vote options
+    const { currentTrip } = useContext(TripContext);
+    const { currentUser } = useContext(UserContext);
+    const [isAdmin, setAdmin] = useState([]);
+    const [currentVote, setCurrentVote] = useState([]);
+
+    useEffect(() => {
+        // check if the user is an admin
+        fetchCurrentVoteData();
+        checkUserAdmin();
+        // do i need something in here to fetch the vote data if the person isn't an admin?
+    }, [currentTrip, currentUser])
+
+    function fetchCurrentVoteData(){
+        API.getSpecificTrip(currentTrip.id)
+            .then(res => setCurrentVote(res.data))
+    }
+
+    function checkUserAdmin(){
+        console.log(currentTrip.id);
+        console.log(currentUser.id)
+        API.isUserAdmin({
+            user_id: currentUser.id,
+            trip_id: currentTrip.id
+        })
+        .then(res => setAdmin(res.data))
+        .catch(err => console.log(err))
+    }
+
+    function onCreateDate(data){
+        API.setVote(
             {
-                title: props.dates, // Title of option
-            },
-        ],
-        closed: false, // Whether this vote is closed or not. If this prop is true, you can only see the result, otherwise you can toggle between voting view and result view.
-        multiple: true, // Whether voters can choose multiple options
-        expansion: false, // Whether voters can add new option
-        showTotal: true, // Whether to show total votes in result view,
+                voteData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
     }
 
-    const LocationData = {
-        title: "Vote for your preffered location", // Title of vote
-        items: [ // Array of vote options
-            {
-                title: props.location_options, // Title of option
-            },
-        ],
-        closed: false, // Whether this vote is closed or not. If this prop is true, you can only see the result, otherwise you can toggle between voting view and result view.
-        multiple: false, // Whether voters can choose multiple options
-        expansion: true, // Whether voters can add new option
-        showTotal: true // Whether to show total votes in result view
-    }
-
-    const activityData = {
-        title: "Vote for your preffered activities", // Title of vote
-        items: [ // Array of vote options
-            {
-                title: props.activity_options, // Title of option
-            },
-        ],
-        closed: false, // Whether this vote is closed or not. If this prop is true, you can only see the result, otherwise you can toggle between voting view and result view.
-        multiple: true, // Whether voters can choose multiple options
-        expansion: true, // Whether voters can add new option
-        showTotal: true // Whether to show total votes in result view
-    }
-
-    const transportData = {
-        title: "Vote for your preffered mode of transport", // Title of vote
-        items: [ // Array of vote options
-            {
-                title: props.transport_options, // Title of option
-            },
-        ],
-        closed: false, // Whether this vote is closed or not. If this prop is true, you can only see the result, otherwise you can toggle between voting view and result view.
-        multiple: false, // Whether voters can choose multiple options
-        expansion: true, // Whether voters can add new option
-        showTotal: true // Whether to show total votes in result view
-    }
-
-    function onUpvote(data, diff) {
-        console.log(diff);
-    }
-
-    function onClose(data){
+    function onUpvoteDate(data, diff) {;
         console.log(data)
+        API.setVote(
+            {
+                voteData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
     }
 
-    return (
-        <div>
-            <ReactVote data={dateData} onUpvote={onUpvote} onClose={onClose} isAdmin={true}/>
-            <ReactVote data={LocationData} onUpvote={onUpvote} onClose={onClose}/>
-            <ReactVote data={activityData} onUpvote={onUpvote} onClose={onClose}/>
-            <ReactVote data={transportData} onUpvote={onUpvote} onClose={onClose}/>
-        </div>
-    )
+    function onResetDate(data) {
+        API.setVote(
+            {
+                voteData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onCloseDate(data) {
+        API.setVote(
+            {
+                voteData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onCreateLocation(data){
+        API.setVote(
+            {
+                locationData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onUpvoteLocation(data, diff) {
+        console.log(data)
+        API.setVote(
+            {
+                locationData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onResetLocation(data) {
+        API.setVote(
+            {
+                locationData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onCloseLocation(data) {
+        API.setVote(
+            {
+                locationData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onCreateActivity(data){
+        API.setVote(
+            {
+                activityData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onUpvoteActivity(data, diff) {
+        console.log(data)
+        API.setVote(
+            {
+                activityData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onResetActivity(data) {
+        API.setVote(
+            {
+                activityData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onCloseActivity(data) {
+        API.setVote(
+            {
+                activityData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onCreateTransport(data){
+        API.setVote(
+            {
+                transportData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onUpvoteTransport(data, diff) {
+        console.log(data)
+        API.setVote(
+            {
+                transportData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onResetTransport(data) {
+        API.setVote(
+            {
+                transportData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    function onCloseTransport(data) {
+        API.setVote(
+            {
+                transportData: data,
+                trip: currentTrip.id
+            }
+        )
+            .then(res => console.log(res.data))
+    }
+
+    if(currentVote){
+        return (
+            <div>
+                <div>
+                    <h3>Dates:</h3>
+                    <ReactVote data={currentVote.dateVote} onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Locations:</h3>
+                    <ReactVote data={currentVote.locationVote} onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Activities:</h3>
+                    <ReactVote data={currentVote.activityVote} onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Mode of Transport:</h3>
+                    <ReactVote data={currentVote.transportVote} onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <div>
+                    <h3>Dates:</h3>
+                    <ReactVote onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Locations:</h3>
+                    <ReactVote onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Activities:</h3>
+                    <ReactVote onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+                <div>
+                    <h3>Mode of Transport:</h3>
+                    <ReactVote onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                </div>
+            </div>
+        )
+    }
 }
 
 export default VotingMech

@@ -47,10 +47,10 @@ module.exports = {
   findOrCreate: function (req, res) {
     db.User
       .findOrCreate({
-        where: { authOId: req.body.authOId },
+        where: { email: req.body.email },
         defaults: {
           name: req.body.name,
-          email: req.body.email
+          authOId: req.body.authOId
         }
       })
       .then(dbModel => res.json(dbModel))
@@ -62,4 +62,26 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  updateVote: function (req, res) {
+    db.Trip
+      .update({
+        dateVote: req.body.voteData,
+        locationVote: req.body.locationData,
+        activityVote: req.body.activityData,
+        transportVote: req.body.transportData
+      },
+      {
+        where: {id: req.body.trip}
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  isUserAdmin: function (req, res) {
+    db.Travellers
+      .findOne({
+        where: req.body
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
 };

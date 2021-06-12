@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../utils/API";
 import VotingMech from "../components/VotingMech";
+import { TripContext } from "../utils/TripContext";
+import { UserContext } from "../utils/UserContext";
 
 function SpecificTrip(props) {
-    const [trip, setTrip] = useState({});
-    
-    const {id} = useParams();
+    const { currentTrip, setCurrentTrip } = useContext(TripContext);
+    const { currentUser } = useContext(UserContext)
+
+    const { id } = useParams();
 
     useEffect(() => {
         console.log(`this is the tripiD ${id}`)
         API.getSpecificTrip(id)
-        .then(res => setTrip(res.data))
-        .then(`this is trip ${trip}`)
-        .catch(err => console.log(err));
+            .then(res => setCurrentTrip(res.data))
+            .then(`this is currentTrip ${currentTrip}`)
+            .catch(err => console.log(err));
     }, [])
 
+    console.log(`this is the current trip ${currentTrip.id}`)
 
     return (
         <div>
-            <h1>{trip.trip_name}</h1>
-            <h3>{trip.date_range}</h3>
-            <VotingMech location_options={trip.location} activity_options={trip.activity} transport_options={trip.transport} dates={trip.possible_dates}/>
+            <h1>{currentTrip.trip_name}</h1>
+            <h3>{currentTrip.date_range}</h3>
+            <VotingMech tripId={id} user={currentUser.id}/>
         </div>
     )
 }
