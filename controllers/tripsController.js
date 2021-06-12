@@ -14,10 +14,11 @@ module.exports = {
   findById: function (req, res) {
     db.User
       .findOne({
-        where: { id: req.params.id },
+        where: { id: req.params.id }
+        ,
         include: [{
           model: db.Trip
-          // ,through: db.Travellers 
+          //through: db.Travellers 
         }]
       })
       .then(dbModel => res.json(dbModel))
