@@ -18,7 +18,7 @@ module.exports = {
         ,
         include: [{
           model: db.Trip
-          // , through: db.Travellers 
+          //through: db.Travellers 
         }]
       })
       .then(dbModel => res.json(dbModel))

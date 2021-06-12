@@ -35,6 +35,7 @@ function StartNewTrip(props) {
             //date_range: formObject.date_range
           })
           .then(res => addAssociation(res.data.id))
+          document.location.replace('/');
         }
       };
 
