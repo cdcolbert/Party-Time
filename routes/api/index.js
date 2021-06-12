@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const tripRoutes = require("./trips");
 const userRoutes = require("./users");
-const specificTripRoutes = require("./");
+const specificTripRoutes = require("./specificTrips");
 const voteRoutes = require("./votes");
 
 // trip routes
