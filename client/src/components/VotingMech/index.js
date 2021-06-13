@@ -200,10 +200,17 @@ const VotingMech = (props) => {
 
     if(currentVote){
         return (
-            <div>
-                <div>
-                    <h3>Dates:</h3>
-                    <ReactVote data={currentVote.dateVote} onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+            <div className="card">
+                <h3>Dates:</h3>
+                <div className="card-divider">
+                    
+                    <ReactVote data={currentVote.dateVote} 
+                    onCreate={onCreateDate} 
+                    onUpvote={onUpvoteDate} 
+                    onClose={onCloseDate} 
+                    onReset={onResetDate} 
+                    isAdmin={isAdmin.admin} 
+                    clientId={currentUser.id} />
                 </div>
                 <div>
                     <h3>Locations:</h3>

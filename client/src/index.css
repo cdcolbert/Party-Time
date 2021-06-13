@@ -145,3 +145,11 @@ code {
   margin-bottom: 2rem;
   font-size: 24px;
 }
+
+button { 
+  color:rgb(255, 0, 191); 
+  font: old 84% 'trebuchet ms',helvetica,sans-serif; 
+  background-color:#fed; 
+  border:1px solid; 
+  border-color: #696 #363 #363 #696; 
+}
