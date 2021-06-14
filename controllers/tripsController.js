@@ -6,7 +6,7 @@ module.exports = {
     db.Trip
       .findOne({
         where: { id: req.params.id },
-        include: [{ model: db.User }]
+        // include: [{ model: db.User }]
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -16,10 +16,10 @@ module.exports = {
       .findOne({
         where: { id: req.params.id }
         ,
-        include: [{
-          model: db.Trip
-          //through: db.Travellers 
-        }]
+        include: {
+          model: db.Trip,
+          // through: db.Travellers 
+        }
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -70,9 +70,9 @@ module.exports = {
         activityVote: req.body.activityData,
         transportVote: req.body.transportData
       },
-      {
-        where: {id: req.body.trip}
-      })
+        {
+          where: { id: req.body.trip }
+        })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -83,5 +83,44 @@ module.exports = {
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  addNewFriend: function (req, res) {
+    db.User
+      .findOrCreate({
+        where: { email: req.params.id },
+        defaults: {
+          name: null,
+          authOId: null
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  associateFriendTrip: function (req, res) {
+    db.Travellers
+      .findOrCreate({
+        where: {
+          trip_id: req.body.trip_id,
+          user_id: req.body.user_id
+        },
+        defaults: {
+          admin: false
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  getFriends: function (req, res) {
+    db.Travellers
+      .findAll({
+        where: {
+          trip_id: req.params.id
+        },
+        include: {
+          model: db.User,
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };

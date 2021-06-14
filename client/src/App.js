@@ -8,6 +8,7 @@ import StartNewTrip from './pages/startNewTrip';
 import { UserContext } from './utils/UserContext';
 import { TripContext } from './utils/TripContext';
 import FoundationBar from "./components/FoundationBar";
+import MyFriends from './pages/myFriends';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
               <Route path="/allTrips/" component={MyTrips} />
               <Route path="/startNewTrip" component={StartNewTrip} />
               <Route path="/myTrips/:id" component={SpecificTrip} />
+              <Route path="/myFriends/:id" component={MyFriends} />
             </Switch>
           </TripContext.Provider>
         </UserContext.Provider>

@@ -3,17 +3,21 @@ import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../utils/UserContext";
 import { Link } from "react-router-dom";
+import { TripContext } from "../utils/TripContext";
 
 
 function MyTrips() {
 
   const { currentUser } = useContext(UserContext);
+  const { currentTrip, setCurrentTrip } = useContext(TripContext);
+
   const { isAuthenticated } = useAuth0();
   const [trips, setTrips] = useState([]);
 
   useEffect(() => {
     getTrips();
   }, [])
+
   function getTrips() {
     API.getTrips(currentUser.id)
       .then(res => setTrips(res.data.trips))
@@ -27,16 +31,15 @@ function MyTrips() {
   return (
     isAuthenticated && (
       <div>
-        {trips.map(trip =>
-            <ul className="accordion" data-accordion>
-              <li className="accordion-item is-active" data-accordion-item>
-                <a href="#" className="accordion-title"><Link to={"/myTrips/" + trip.id}>
-                  {trip.trip_name}
-                </Link></a>
-              </li>
-            </ul>
-
-        )}
+        <ul className="accordion" data-accordion>
+          {trips.map(trip =>
+            <li key={trip.id} className="accordion-item is-active" data-accordion-item>
+              <Link className="accordion-title" to={"/myTrips/" + trip.id}>
+                {trip.trip_name}
+              </Link>
+            </li>
+          )}
+        </ul>
       </div>
     )
   )

@@ -201,55 +201,46 @@ const VotingMech = (props) => {
 
     if (currentVote) {
         return (
-            <div class="grid-container">
-                <div class="grid-x grid-margin-x small-up-2 medium-up-3">
-                    <div class="cell">
-                        <div className="card align-center" >
-                            <h3>Dates:</h3>
-                                <ReactVote data={currentVote.dateVote}
-                                    onCreate={onCreateDate}
-                                    onUpvote={onUpvoteDate}
-                                    onClose={onCloseDate}
-                                    onReset={onResetDate}
-                                    isAdmin={isAdmin.admin}
-                                    clientId={currentUser.id} />
-                        </div>
-                    </div>
+            <div className="grid-container">
+                <div className="card" >
+                    <h3>Dates:</h3>
+                    <ReactVote data={currentVote.dateVote}
+                        onCreate={onCreateDate}
+                        onUpvote={onUpvoteDate}
+                        onClose={onCloseDate}
+                        onReset={onResetDate}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
-
-                <div className="card align-center">
+                <div className="card">
                     <h3>Locations:</h3>
-                    <ReactVote data={currentVote.locationVote} 
-                    onCreate={onCreateLocation} 
-                    onUpvote={onUpvoteLocation} 
-                    onClose={onCloseLocation} 
-                    onReset={onResetLocation} 
-                    isAdmin={isAdmin.admin} 
-                    clientId={currentUser.id} />
+                    <ReactVote data={currentVote.locationVote}
+                        onCreate={onCreateLocation}
+                        onUpvote={onUpvoteLocation}
+                        onClose={onCloseLocation}
+                        onReset={onResetLocation}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
-
-
-
                 <div className="card">
                     <h3>Activities:</h3>
-                    <ReactVote data={currentVote.activityVote} 
-                    onCreate={onCreateActivity} 
-                    onUpvote={onUpvoteActivity} 
-                    onClose={onCloseActivity} 
-                    onReset={onResetActivity} 
-                    isAdmin={isAdmin.admin} 
-                    clientId={currentUser.id} />
+                    <ReactVote data={currentVote.activityVote}
+                        onCreate={onCreateActivity}
+                        onUpvote={onUpvoteActivity}
+                        onClose={onCloseActivity}
+                        onReset={onResetActivity}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
-
                 <div className="card">
                     <h3>Mode of Transport:</h3>
-                    <ReactVote data={currentVote.transportVote} 
-                    onCreate={onCreateTransport} 
-                    onUpvote={onUpvoteTransport} 
-                    onClose={onCloseTransport} 
-                    onReset={onResetTransport} 
-                    isAdmin={isAdmin.admin} 
-                    clientId={currentUser.id} />
+                    <ReactVote data={currentVote.transportVote}
+                        onCreate={onCreateTransport}
+                        onUpvote={onUpvoteTransport}
+                        onClose={onCloseTransport}
+                        onReset={onResetTransport}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
             </div>
         )

@@ -1,18 +1,16 @@
 import React, { useContext, useState } from "react";
-import DayVote from "../components/DayVote";
+import AddFriends from "../components/addFriends";
 import { Input, FormBtn } from "../components/Form";
 import API from "../utils/API";
+import { TripContext } from "../utils/TripContext";
 import { UserContext } from "../utils/UserContext";
 
 
 function StartNewTrip(props) {
     const { currentUser } = useContext(UserContext);
+    const { currentTrip, setCurrentTrip } = useContext(TripContext);
+
     const [formObject, setFormObject] = useState({});
-    // useEffect(() => {
-    //     API.saveTrip(id)
-    //       .then(res => saveTrip(res.data))
-    //       .catch(err => console.log(err));
-    //   })
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -20,22 +18,15 @@ function StartNewTrip(props) {
     };
 
     function handleFormSubmit(event) {
+
         event.preventDefault();
         console.log(formObject.trip_name)
-        console.log(formObject.location)
-        console.log(formObject.activity)
-        console.log(formObject.transport)
 
-        if (formObject.location) {
+        if (formObject.trip_name) {
             API.saveTrip({
-                trip_name: formObject.trip_name,
-                location: formObject.location,
-                activity: formObject.activity,
-                transport: formObject.transport,
-                //date_range: formObject.date_range
+                trip_name: formObject.trip_name
             })
                 .then(res => addAssociation(res.data.id))
-            document.location.replace('/');
         }
     };
 
@@ -51,42 +42,23 @@ function StartNewTrip(props) {
     return (
 
         <div className="row">
-            <div className="columns large-6">
+            <div className="col">
+                <h2>Create New Trip</h2>
+            </div>
+            <div className="col">
                 <form>
                     <Input
                         onChange={handleInputChange}
                         name="trip_name"
                         placeholder="Trip Name"
                     />
-                    <Input
-                        onChange={handleInputChange}
-                        name="location"
-                        placeholder="Potential Locations"
-                    />
-                    <Input
-                        onChange={handleInputChange}
-                        name="activity"
-                        placeholder="Potential Things To Do"
-                    />
-                    <Input
-                        onChange={handleInputChange}
-                        name="transport"
-                        placeholder="Potential Transportation"
-                    />
-                    <DayVote
-                        onChange={handleInputChange}
-                        name="date_range"
-                    />
-                    </form>
-                    </div>
-
-            <div className="columns large-6">
-
-                <FormBtn
-                    onClick={handleFormSubmit}
-                >
-                    Create Trip
-                </FormBtn>
+                    <button
+                        //disabled={!(formObject.trip_name && formObject.date_range)}
+                        onClick={handleFormSubmit}
+                    >
+                        Create Trip
+                    </button>
+                </form>
             </div>
         </div>
     )
