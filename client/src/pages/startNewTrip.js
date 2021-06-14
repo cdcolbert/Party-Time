@@ -16,10 +16,10 @@ function StartNewTrip(props) {
 
     function handleInputChange(event) {
         const { name, value } = event.target;
-        setFormObject({...formObject, [name]: value})
-      };
+        setFormObject({ ...formObject, [name]: value })
+    };
 
-      function handleFormSubmit(event) {
+    function handleFormSubmit(event) {
         event.preventDefault();
         console.log(formObject.trip_name)
         console.log(formObject.location)
@@ -27,30 +27,31 @@ function StartNewTrip(props) {
         console.log(formObject.transport)
 
         if (formObject.location) {
-          API.saveTrip({
-            trip_name: formObject.trip_name,
-            location: formObject.location,
-            activity: formObject.activity,
-            transport: formObject.transport,
-            //date_range: formObject.date_range
-          })
-          .then(res => addAssociation(res.data.id))
-          document.location.replace('/');
+            API.saveTrip({
+                trip_name: formObject.trip_name,
+                location: formObject.location,
+                activity: formObject.activity,
+                transport: formObject.transport,
+                //date_range: formObject.date_range
+            })
+                .then(res => addAssociation(res.data.id))
+            document.location.replace('/');
         }
-      };
+    };
 
-      function addAssociation (newTripId){
+    function addAssociation(newTripId) {
         API.addAssociation({
             trip_id: newTripId,
             user_id: currentUser.id,
             admin: true
         })
-        .then(res => console.log(res.data))
-      }
+            .then(res => console.log(res.data))
+    }
 
     return (
-        <div>
-            <div>
+
+        <div className="row">
+            <div className="columns large-6">
                 <form>
                     <Input
                         onChange={handleInputChange}
@@ -76,13 +77,16 @@ function StartNewTrip(props) {
                         onChange={handleInputChange}
                         name="date_range"
                     />
-                    <FormBtn
-                    //disabled={!(formObject.trip_name && formObject.date_range)}
+                    </form>
+                    </div>
+
+            <div className="columns large-6">
+
+                <FormBtn
                     onClick={handleFormSubmit}
-                    >
-                        Create Trip
-                    </FormBtn>
-                </form>
+                >
+                    Create Trip
+                </FormBtn>
             </div>
         </div>
     )
