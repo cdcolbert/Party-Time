@@ -11,16 +11,16 @@ function MyFriends() {
     const { isAuthenticated } = useAuth0();
     const [trips, setTrips] = useState([]);
     const [formObject, setFormObject] = useState({});
+    const [friends, setFriends] = useState([]);
 
 
     useEffect(() => {
-        // getFriends();
+        getFriends();
     }, [])
 
-    function getTrips() {
-        API.getTrips(currentUser.id)
-            .then(res => setTrips(res.data.trips))
-            .then(`this is trip ${trips[0]}`)
+    function getFriends() {
+        API.getFriends(currentTrip.id)
+            .then(res => setFriends(res.data))
             .catch(err => console.log(err));
     }
 
@@ -53,7 +53,7 @@ function MyFriends() {
     return (
         isAuthenticated && (
             <div>
-                these are your friends for {currentTrip.trip_name}
+                {currentTrip.trip_name} Friend List
                 <div>
                     <form>
                         <input
@@ -67,6 +67,15 @@ function MyFriends() {
                     </form>
                 </div>
                 <div>Friends who have been invited:</div>
+                <ul className="accordion" data-accordion>
+                    {friends.map(friend =>
+                        <li key={friend.id} className="accordion-item is-active" data-accordion-item>
+                            <div className="accordion-title" >
+                                {friend.user.email}
+                            </div>
+                        </li>
+                    )}
+                </ul>
             </div>
         )
     )

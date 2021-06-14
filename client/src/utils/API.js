@@ -32,5 +32,8 @@ export default {
   },
   associateFriendTrip: function (friendEmailData){
     return axios.post("/api/friends/", friendEmailData)
+  },
+  getFriends: function (tripData){
+    return axios.get("/api/friends/" + tripData)
   }
 };

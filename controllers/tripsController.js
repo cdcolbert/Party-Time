@@ -70,9 +70,9 @@ module.exports = {
         activityVote: req.body.activityData,
         transportVote: req.body.transportData
       },
-      {
-        where: {id: req.body.trip}
-      })
+        {
+          where: { id: req.body.trip }
+        })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -89,8 +89,8 @@ module.exports = {
       .findOrCreate({
         where: { email: req.params.id },
         defaults: {
-          name: "",
-          authOId: ""
+          name: null,
+          authOId: null
         }
       })
       .then(dbModel => res.json(dbModel))
@@ -98,14 +98,28 @@ module.exports = {
   },
   associateFriendTrip: function (req, res) {
     db.Travellers
-      .findOrCreate(
-        {where: {
+      .findOrCreate({
+        where: {
           trip_id: req.body.trip_id,
           user_id: req.body.user_id
         },
-      defaults: {
-        admin: false
-      }})
+        defaults: {
+          admin: false
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  getFriends: function (req, res) {
+    db.Travellers
+      .findAll({
+        where: {
+          trip_id: req.params.id
+        },
+        include: {
+          model: db.User,
+        }
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
