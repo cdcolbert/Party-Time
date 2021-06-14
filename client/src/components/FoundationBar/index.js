@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCocktail } from '@fortawesome/free-solid-svg-icons'
 import LoginButton from "../loginButton";
 import LogoutButton from "../logoutButton";
+import HomeButton from "../HomeButton";
+
 
 function FoundationBar() {
     return (
@@ -16,9 +18,10 @@ function FoundationBar() {
                 </div>
 
                 <div className="title-bar-right">
-                <a className="align-right" href="/">Home</a>
                 <div className="align-right"><LoginButton /></div>
                 <div className="align-right"><LogoutButton /></div>
+                <div className="align-right"><HomeButton /></div>
+
 
             </div>
 

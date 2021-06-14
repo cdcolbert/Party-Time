@@ -18,23 +18,23 @@ const VotingMech = (props) => {
         // do i need something in here to fetch the vote data if the person isn't an admin?
     }, [currentTrip, currentUser])
 
-    function fetchCurrentVoteData(){
+    function fetchCurrentVoteData() {
         API.getSpecificTrip(currentTrip.id)
             .then(res => setCurrentVote(res.data))
     }
 
-    function checkUserAdmin(){
+    function checkUserAdmin() {
         console.log(currentTrip.id);
         console.log(currentUser.id)
         API.isUserAdmin({
             user_id: currentUser.id,
             trip_id: currentTrip.id
         })
-        .then(res => setAdmin(res.data))
-        .catch(err => console.log(err))
+            .then(res => setAdmin(res.data))
+            .catch(err => console.log(err))
     }
 
-    function onCreateDate(data){
+    function onCreateDate(data) {
         API.setVote(
             {
                 voteData: data,
@@ -44,7 +44,8 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    function onUpvoteDate(data, diff) {;
+    function onUpvoteDate(data, diff) {
+        ;
         console.log(data)
         API.setVote(
             {
@@ -75,7 +76,7 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    function onCreateLocation(data){
+    function onCreateLocation(data) {
         API.setVote(
             {
                 locationData: data,
@@ -116,7 +117,7 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    function onCreateActivity(data){
+    function onCreateActivity(data) {
         API.setVote(
             {
                 activityData: data,
@@ -157,7 +158,7 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    function onCreateTransport(data){
+    function onCreateTransport(data) {
         API.setVote(
             {
                 transportData: data,
@@ -198,24 +199,48 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    if(currentVote){
+    if (currentVote) {
         return (
-            <div>
-                <div>
+            <div className="grid-container">
+                <div className="card align-center" >
                     <h3>Dates:</h3>
-                    <ReactVote data={currentVote.dateVote} onCreate={onCreateDate} onUpvote={onUpvoteDate} onClose={onCloseDate} onReset={onResetDate} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                    <ReactVote data={currentVote.dateVote}
+                        onCreate={onCreateDate}
+                        onUpvote={onUpvoteDate}
+                        onClose={onCloseDate}
+                        onReset={onResetDate}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
-                <div>
+                <div className="card align-center">
                     <h3>Locations:</h3>
-                    <ReactVote data={currentVote.locationVote} onCreate={onCreateLocation} onUpvote={onUpvoteLocation} onClose={onCloseLocation} onReset={onResetLocation} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                    <ReactVote data={currentVote.locationVote}
+                        onCreate={onCreateLocation}
+                        onUpvote={onUpvoteLocation}
+                        onClose={onCloseLocation}
+                        onReset={onResetLocation}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
-                <div>
+                <div className="card">
                     <h3>Activities:</h3>
-                    <ReactVote data={currentVote.activityVote} onCreate={onCreateActivity} onUpvote={onUpvoteActivity} onClose={onCloseActivity} onReset={onResetActivity} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                    <ReactVote data={currentVote.activityVote}
+                        onCreate={onCreateActivity}
+                        onUpvote={onUpvoteActivity}
+                        onClose={onCloseActivity}
+                        onReset={onResetActivity}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
-                <div>
+                <div className="card">
                     <h3>Mode of Transport:</h3>
-                    <ReactVote data={currentVote.transportVote} onCreate={onCreateTransport} onUpvote={onUpvoteTransport} onClose={onCloseTransport} onReset={onResetTransport} isAdmin={isAdmin.admin} clientId={currentUser.id} />
+                    <ReactVote data={currentVote.transportVote}
+                        onCreate={onCreateTransport}
+                        onUpvote={onUpvoteTransport}
+                        onClose={onCloseTransport}
+                        onReset={onResetTransport}
+                        isAdmin={isAdmin.admin}
+                        clientId={currentUser.id} />
                 </div>
             </div>
         )

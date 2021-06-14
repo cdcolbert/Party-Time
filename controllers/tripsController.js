@@ -6,7 +6,7 @@ module.exports = {
     db.Trip
       .findOne({
         where: { id: req.params.id },
-        include: [{ model: db.User }]
+        // include: [{ model: db.User }]
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

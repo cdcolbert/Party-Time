@@ -30,27 +30,25 @@ function LandingPage() {
             .then(`the user has been saved`)
             .catch(err => console.log(err));
     }
-if(isAuthenticated) {
-    return (
-        isAuthenticated && (
-            <div>
-                <div>hi</div>
-                <div className="user-name">Welcome back, {currentUser.name}</div>
-                <div>
-                    <Link to="/allTrips/">My Trips</Link>
-                </div>
-                <div>
-                    <Link to="/startNewTrip">Start New Trip</Link>
-                </div>
-            </div>
+    if (isAuthenticated) {
+        return (
+            isAuthenticated && (
+                <container>
+                    <h1 className="user-name">Welcome back, {currentUser.name}</h1>
+                    <div class="primary button-group hollow">
+                        <a class="button secondary"><Link to="/allTrips/">My Trips</Link></a>
+                        <a class="button"><Link to="/startNewTrip">Start New Trip</Link></a>
+                    </div>
+                </container>
+            )
         )
-    )}
+    }
     return (
-    <div> 
-    <HomepageHeader />
-    <HowItWorks />
-    <Planners />
-</div>)
+        <div>
+            <HomepageHeader />
+            <HowItWorks />
+            <Planners />
+        </div>)
 }
 
 export default LandingPage;

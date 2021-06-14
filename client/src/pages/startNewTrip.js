@@ -42,8 +42,9 @@ function StartNewTrip(props) {
     }
 
     return (
-        <div>
-            <div>
+
+        <div className="row">
+            <div className="columns large-6">
                 <form>
                     <Input
                         onChange={handleInputChange}

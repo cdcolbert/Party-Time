@@ -7,39 +7,38 @@ import { Link } from "react-router-dom";
 
 function MyTrips() {
 
-    const { currentUser } = useContext(UserContext);
-    const { isAuthenticated } = useAuth0();
-    const [trips, setTrips] = useState([]);
+  const { currentUser } = useContext(UserContext);
+  const { isAuthenticated } = useAuth0();
+  const [trips, setTrips] = useState([]);
 
-    useEffect(() => {
-        getTrips();
-    }, [])
-    
-    function getTrips() {
-        API.getTrips(currentUser.id)
-        .then(res => setTrips(res.data.trips))
-        .then(`this is trip ${trips[0]}`)
-        .catch(err => console.log(err));
-    }
-    
+  useEffect(() => {
+    getTrips();
+  }, [])
+  function getTrips() {
+    API.getTrips(currentUser.id)
+      .then(res => setTrips(res.data.trips))
+      .then(`this is trip ${trips[0]}`)
+      .catch(err => console.log(err));
+  }
 
-    console.log(`this is the current User id ${currentUser.id}`);
-    console.log(`these are my trips ${trips[0]}`)
-    return (
-        isAuthenticated && (
-            <div>
-            {trips.map(trip => 
-              <button key={trip.id}>
-                <Link to={"/myTrips/" + trip.id}>
-                  <strong>
-                    {trip.trip_name}
-                  </strong>
-                </Link>
-              </button>
-            )}
-          </div>
-        )
+
+  console.log(`this is the current User id ${currentUser.id}`);
+  console.log(`these are my trips ${trips}`)
+  return (
+    isAuthenticated && (
+      <div>
+        <ul className="accordion" data-accordion>
+          {trips.map(trip =>
+            <li key={trip.id} className="accordion-item is-active" data-accordion-item>
+              <Link className="accordion-title" to={"/myTrips/" + trip.id}>
+                {trip.trip_name}
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
     )
+  )
 }
 
 export default MyTrips;
