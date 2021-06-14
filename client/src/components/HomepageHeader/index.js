@@ -8,8 +8,6 @@ function HomepageHeader() {
             <div className="first-txt">
                 <h1>Close Your Eyes and Open Your Mind</h1>
                 <h6> We have a great app. The best.</h6>
-                <button className="clear button secondary">HOW IT WORKS</button>
-                <button className="clear button secondary">MEET YOUR PARTY PLANNERS</button>
             </div>
             
         </div>
