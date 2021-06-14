@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
 import AddFriends from "../components/addFriends";
-import DayVote from "../components/DayVote";
 import { Input, FormBtn } from "../components/Form";
 import API from "../utils/API";
+import { TripContext } from "../utils/TripContext";
 import { UserContext } from "../utils/UserContext";
 
 
 function StartNewTrip(props) {
     const { currentUser } = useContext(UserContext);
+    const { currentTrip, setCurrentTrip } = useContext(TripContext);
+
     const [formObject, setFormObject] = useState({});
 
     function handleInputChange(event) {
@@ -35,28 +37,27 @@ function StartNewTrip(props) {
             admin: true
         })
             .then(res => console.log(res.data))
-            .then(setFormObject({
-                trip_name: ""
-            }))
-            .then(console.log(`this is the form object after reset ${formObject.trip_name}`))
     }
 
     return (
 
         <div className="row">
-            <div className="columns large-6">
+            <div className="col">
+                <h2>Create New Trip</h2>
+            </div>
+            <div className="col">
                 <form>
                     <Input
                         onChange={handleInputChange}
                         name="trip_name"
                         placeholder="Trip Name"
                     />
-                    <FormBtn
+                    <button
                         //disabled={!(formObject.trip_name && formObject.date_range)}
                         onClick={handleFormSubmit}
                     >
                         Create Trip
-                    </FormBtn>
+                    </button>
                 </form>
             </div>
         </div>

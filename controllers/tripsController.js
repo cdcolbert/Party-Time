@@ -83,5 +83,30 @@ module.exports = {
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  addNewFriend: function (req, res) {
+    db.User
+      .findOrCreate({
+        where: { email: req.params.id },
+        defaults: {
+          name: "",
+          authOId: ""
+        }
+      })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  associateFriendTrip: function (req, res) {
+    db.Travellers
+      .findOrCreate(
+        {where: {
+          trip_id: req.body.trip_id,
+          user_id: req.body.user_id
+        },
+      defaults: {
+        admin: false
+      }})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };

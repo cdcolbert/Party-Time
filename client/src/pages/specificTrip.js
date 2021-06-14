@@ -4,6 +4,8 @@ import API from "../utils/API";
 import VotingMech from "../components/VotingMech";
 import { TripContext } from "../utils/TripContext";
 import { UserContext } from "../utils/UserContext";
+import { Link } from "react-router-dom";
+
 
 function SpecificTrip(props) {
     const { currentTrip, setCurrentTrip } = useContext(TripContext);
@@ -25,7 +27,10 @@ function SpecificTrip(props) {
         <div>
             <h1>{currentTrip.trip_name}</h1>
             <h3>{currentTrip.date_range}</h3>
-            <VotingMech tripId={id} user={currentUser.id}/>
+            <Link to={"/myFriends/" + currentTrip.id}>
+                Add Friends
+            </Link>
+            <VotingMech tripId={id} user={currentUser.id} />
         </div>
     )
 }

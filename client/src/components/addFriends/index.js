@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { TripContext } from '../../utils/TripContext';
+import { UserContext } from '../../utils/UserContext';
 import { Input } from '../Form'
 
-const AddFriends = () => {
+const AddFriends = (props) => {
+  const { currentTrip, setCurrentTrip } = useContext(TripContext);
+  const { currentUser } = useContext(UserContext)
 
   return (
     <div>
@@ -9,10 +13,12 @@ const AddFriends = () => {
       <form>
         <Input
           // onChange={handleInputChange}
-          name="trip_name"
+          name="friend_email"
           placeholder="Friend's Email"
         />
-
+        <button>
+          Add Friend
+        </button>
       </form>
     </div>
 

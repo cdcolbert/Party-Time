@@ -202,7 +202,7 @@ const VotingMech = (props) => {
     if (currentVote) {
         return (
             <div className="grid-container">
-                <div className="card align-center" >
+                <div className="card" >
                     <h3>Dates:</h3>
                     <ReactVote data={currentVote.dateVote}
                         onCreate={onCreateDate}
@@ -212,7 +212,7 @@ const VotingMech = (props) => {
                         isAdmin={isAdmin.admin}
                         clientId={currentUser.id} />
                 </div>
-                <div className="card align-center">
+                <div className="card">
                     <h3>Locations:</h3>
                     <ReactVote data={currentVote.locationVote}
                         onCreate={onCreateLocation}

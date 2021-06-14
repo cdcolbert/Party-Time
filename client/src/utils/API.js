@@ -26,5 +26,11 @@ export default {
   },
   isUserAdmin: function (specificTripData){
     return axios.get("/api/votes/", specificTripData)
+  },
+  inviteFriend: function (friendEmailData){
+    return axios.post("/api/friends/newFriend/" + friendEmailData)
+  },
+  associateFriendTrip: function (friendEmailData){
+    return axios.post("/api/friends/", friendEmailData)
   }
 };

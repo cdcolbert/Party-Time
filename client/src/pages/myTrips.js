@@ -3,17 +3,21 @@ import API from "../utils/API";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../utils/UserContext";
 import { Link } from "react-router-dom";
+import { TripContext } from "../utils/TripContext";
 
 
 function MyTrips() {
 
   const { currentUser } = useContext(UserContext);
+  const { currentTrip, setCurrentTrip } = useContext(TripContext);
+
   const { isAuthenticated } = useAuth0();
   const [trips, setTrips] = useState([]);
 
   useEffect(() => {
     getTrips();
   }, [])
+
   function getTrips() {
     API.getTrips(currentUser.id)
       .then(res => setTrips(res.data.trips))
