@@ -16,6 +16,7 @@ function FoundationBar() {
                 </div>
 
                 <div className="title-bar-right">
+                <a className="align-right" href="/">Home</a>
                 <div className="align-right"><LoginButton /></div>
                 <div className="align-right"><LogoutButton /></div>
 

@@ -14,6 +14,7 @@ function MyTrips() {
     useEffect(() => {
         getTrips();
     }, [])
+    
     function getTrips() {
         API.getTrips(currentUser.id)
         .then(res => setTrips(res.data.trips))
@@ -23,7 +24,7 @@ function MyTrips() {
     
 
     console.log(`this is the current User id ${currentUser.id}`);
-    console.log(`these are my trips ${trips}`)
+    console.log(`these are my trips ${trips[0]}`)
     return (
         isAuthenticated && (
             <div>

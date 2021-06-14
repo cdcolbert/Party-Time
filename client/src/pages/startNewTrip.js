@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import AddFriends from "../components/addFriends";
 import DayVote from "../components/DayVote";
 import { Input, FormBtn } from "../components/Form";
 import API from "../utils/API";
@@ -8,45 +9,37 @@ import { UserContext } from "../utils/UserContext";
 function StartNewTrip(props) {
     const { currentUser } = useContext(UserContext);
     const [formObject, setFormObject] = useState({});
-    // useEffect(() => {
-    //     API.saveTrip(id)
-    //       .then(res => saveTrip(res.data))
-    //       .catch(err => console.log(err));
-    //   })
 
     function handleInputChange(event) {
         const { name, value } = event.target;
-        setFormObject({...formObject, [name]: value})
-      };
+        setFormObject({ ...formObject, [name]: value })
+    };
 
-      function handleFormSubmit(event) {
+    function handleFormSubmit(event) {
+
         event.preventDefault();
         console.log(formObject.trip_name)
-        console.log(formObject.location)
-        console.log(formObject.activity)
-        console.log(formObject.transport)
 
-        if (formObject.location) {
-          API.saveTrip({
-            trip_name: formObject.trip_name,
-            location: formObject.location,
-            activity: formObject.activity,
-            transport: formObject.transport,
-            //date_range: formObject.date_range
-          })
-          .then(res => addAssociation(res.data.id))
-          document.location.replace('/');
+        if (formObject.trip_name) {
+            API.saveTrip({
+                trip_name: formObject.trip_name
+            })
+                .then(res => addAssociation(res.data.id))
         }
-      };
+    };
 
-      function addAssociation (newTripId){
+    function addAssociation(newTripId) {
         API.addAssociation({
             trip_id: newTripId,
             user_id: currentUser.id,
             admin: true
         })
-        .then(res => console.log(res.data))
-      }
+            .then(res => console.log(res.data))
+            .then(setFormObject({
+                trip_name: ""
+            }))
+            .then(console.log(`this is the form object after reset ${formObject.trip_name}`))
+    }
 
     return (
         <div>
@@ -57,28 +50,9 @@ function StartNewTrip(props) {
                         name="trip_name"
                         placeholder="Trip Name"
                     />
-                    <Input
-                        onChange={handleInputChange}
-                        name="location"
-                        placeholder="Potential Locations"
-                    />
-                    <Input
-                        onChange={handleInputChange}
-                        name="activity"
-                        placeholder="Potential Things To Do"
-                    />
-                    <Input
-                        onChange={handleInputChange}
-                        name="transport"
-                        placeholder="Potential Transportation"
-                    />
-                    <DayVote
-                        onChange={handleInputChange}
-                        name="date_range"
-                    />
                     <FormBtn
-                    //disabled={!(formObject.trip_name && formObject.date_range)}
-                    onClick={handleFormSubmit}
+                        //disabled={!(formObject.trip_name && formObject.date_range)}
+                        onClick={handleFormSubmit}
                     >
                         Create Trip
                     </FormBtn>

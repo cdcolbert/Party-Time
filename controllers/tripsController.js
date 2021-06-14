@@ -16,10 +16,10 @@ module.exports = {
       .findOne({
         where: { id: req.params.id }
         ,
-        include: [{
-          model: db.Trip
-          //through: db.Travellers 
-        }]
+        include: {
+          model: db.Trip,
+          // through: db.Travellers 
+        }
       })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
