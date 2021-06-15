@@ -30,7 +30,7 @@ const VotingMech = (props) => {
             user_id: currentUser.id,
             trip_id: currentTrip.id
         })
-            .then(res => setAdmin(res.data))
+            .then(res => console.log(res.data))
             .catch(err => console.log(err))
     }
 
@@ -199,7 +199,7 @@ const VotingMech = (props) => {
             .then(res => console.log(res.data))
     }
 
-    if (currentVote) {
+    if (isAdmin.admin === false) {
         return (
             <div className="grid-container">
                 <div className="card" >
